@@ -5,67 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/12 11:44:10 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/21 17:19:55 by loamar           ###   ########.fr       */
+/*   Created: 2019/10/22 16:56:31 by loamar            #+#    #+#             */
+/*   Updated: 2019/10/22 16:59:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				ft_isneg(long int tmp)
+unsigned int		ft_get_size(unsigned int n)
 {
-	if (tmp < 0)
-		return (1);
-	return (0);
+	unsigned int	size;
+
+	size = 0;
+	while (n >= 10)
+	{
+		n /= 10;
+		size++;
+	}
+	return (size + 1);
 }
 
-int				ft_value(long int tmp)
+char				*ft_itoa(int n)
 {
-	long int	begin_value;
-	long int	value;
+	unsigned int	nb;
+	unsigned int	size;
+	int				i;
+	char			*str;
 
-	value = 0;
-	begin_value = tmp;
-	while (begin_value > 0)
+	nb = (n < 0) ? (unsigned int)(n * -1) : (unsigned int)n;
+	size = (n < 0) ? ft_get_size(nb) + 1 : ft_get_size(nb);
+	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
+		return (0);
+	if (n < 0)
+		str[0] = '-';
+	i = size - 1;
+	str[size] = '\0';
+	while (nb >= 10)
 	{
-		begin_value /= 10;
-		value++;
+		str[i--] = (nb % 10) + '0';
+		nb /= 10;
 	}
-	return (value);
-}
-
-void			ft_changevalue(long int *len, long int *neg, long int *tmp)
-{
-	if (ft_isneg(*tmp) == 1)
-	{
-		*neg = -1;
-		*tmp = -*tmp;
-		*len = *len + 1;
-	}
-}
-
-char			*ft_itoa(int n)
-{
-	char		*stock;
-	long int	len;
-	long int	neg;
-	long int	tmp;
-
-	tmp = n;
-	len = 1;
-	if (tmp == 0)
-		len = 2;
-	ft_changevalue(&len, &neg, &tmp);
-	len += ft_value(tmp);
-	if (!(stock = (char *)malloc(sizeof(char) * len)))
-		return (NULL);
-	stock[--len] = '\0';
-	while (len--)
-	{
-		stock[len] = tmp % 10 + 48;
-		tmp = tmp / 10;
-	}
-	if (neg == -1)
-		stock[0] = '-';
-	return (stock);
+	str[i] = (nb % 10) + '0';
+	return (str);
 }

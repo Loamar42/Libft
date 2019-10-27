@@ -6,7 +6,7 @@
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 19:29:29 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/20 20:12:03 by loamar           ###   ########.fr       */
+/*   Updated: 2019/10/23 16:04:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst || !f)
-		return ;
-	while (lst)
+	if (lst && f)
 	{
-		(*f)(lst);
-		lst = lst->next;
+		while (lst)
+		{
+			(*f)(lst->content);
+			lst = lst->next;
+		}
 	}
 }

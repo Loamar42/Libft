@@ -6,7 +6,7 @@
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 14:49:14 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/21 15:28:56 by loamar           ###   ########.fr       */
+/*   Updated: 2019/10/23 16:10:01 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	if (lst && del)
 	{
-		del(lst->content);
+		(*del)(lst->content);
 		free(lst);
+		lst = NULL;
 	}
 }

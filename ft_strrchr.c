@@ -6,7 +6,7 @@
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 11:40:43 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/15 19:24:34 by loamar           ###   ########.fr       */
+/*   Updated: 2019/10/22 14:59:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ char	*ft_strrchr(const char *s, int c)
 			return ((char*)(s + pos - 1));
 		pos--;
 	}
-	return (NULL);
+	return (0);
 }

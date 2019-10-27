@@ -6,7 +6,7 @@
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 19:25:41 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/15 13:41:49 by loamar           ###   ########.fr       */
+/*   Updated: 2019/10/22 16:45:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t		pos;
 
 	pos = 0;
-	if (count == 0 || size == 0)
-		return (NULL);
-	if (!(res = malloc(count * size)))
-		return (NULL);
-	while (pos < count)
+	if (count * size == 0)
 	{
-		((char *)res)[pos] = 0;
-		pos++;
+		count = 1;
+		size = 1;
 	}
+	if (!(res = malloc(count * size)))
+		return (0);
+	ft_memset(res, '\0', size * count);
 	return (res);
 }

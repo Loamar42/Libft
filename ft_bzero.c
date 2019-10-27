@@ -6,7 +6,7 @@
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 11:27:09 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/14 13:14:33 by loamar           ###   ########.fr       */
+/*   Updated: 2019/10/22 13:05:22 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t			pos;
+	char	*str;
+	size_t	pos;
 
-	pos = 0;
-	while (pos < n)
+	if (n != 0)
 	{
-		((char*)s)[pos] = 0;
-		pos++;
+		pos = 0;
+		str = (char *)s;
+		while (pos < n)
+		{
+			str[pos] = '\0';
+			pos++;
+		}
 	}
 }

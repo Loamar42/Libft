@@ -6,7 +6,7 @@
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:53:29 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/15 18:15:39 by loamar           ###   ########.fr       */
+/*   Updated: 2019/10/22 13:18:20 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	dst_length;
-	size_t	src_length;
+	size_t	len;
+	size_t	dst_len;
 	size_t	i;
 
-	dst_length = ft_strlen(dst);
-	src_length = ft_strlen(src);
-	if (dstsize <= dst_length)
-		return (src_length + dstsize);
+	len = ft_strlen(src);
+	if (!dst && dstsize == 0)
+		return (len);
+	dst_len = ft_strlen(dst);
+	if (dstsize <= dst_len)
+		return (len + dstsize);
 	else
+		len += dst_len;
+	i = 0;
+	while (src[i] != '\0' && dst_len < dstsize - 1)
 	{
-		i = 0;
-		while ((dst_length + i < dstsize - 1) && src[i] != '\0')
-		{
-			dst[dst_length + i] = src[i];
-			i++;
-		}
-		dst[dst_length + i] = '\0';
-		return (dst_length + src_length);
+		dst[dst_len] = src[i];
+		i++;
+		dst_len++;
 	}
+	dst[dst_len] = '\0';
+	return (len);
 }

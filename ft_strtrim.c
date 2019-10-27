@@ -5,19 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 12:25:19 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/20 18:50:40 by loamar           ###   ########.fr       */
+/*   Created: 2019/10/23 15:52:26 by loamar            #+#    #+#             */
+/*   Updated: 2019/10/24 16:03:37 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_isset(char c, char const *set)
+static int	is_set(char c, char const *set)
 {
-	int		i;
+	unsigned int i;
 
+	if (!set)
+		return (0);
 	i = 0;
-	while (set[i])
+	while (set[i] != '\0')
 	{
 		if (set[i] == c)
 			return (1);
@@ -26,26 +28,30 @@ size_t			ft_isset(char c, char const *set)
 	return (0);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+char		*ft_strtrim(char const *s1, char const *set)
 {
-	char		*str;
-	char		*res;
-	size_t		pos;
-	size_t		len;
+	char			*start;
+	char			*end;
+	char			*ret;
+	int				len;
+	unsigned int	i;
 
-	pos = 0;
-	len = ft_strlen(s1);
 	if (!s1)
-		return (NULL);
-	len = ft_strlen(s1);
-	while (ft_isset(s1[pos], set) == 1)
-		pos++;
-	if (s1[pos] == '\0')
-		return ("");
-	str = ft_substr(s1, pos, len - pos);
-	len = ft_strlen(str);
-	while (ft_isset(str[len - 1], set) == 1)
-		len--;
-	res = ft_substr(str, 0, len);
-	return (res);
+		return (0);
+	start = (char *)s1;
+	end = (char *)s1 + ft_strlen(s1);
+	while (is_set(*start, set))
+		start++;
+	if (start < end)
+		end--;
+	while (is_set(*end, set))
+		end--;
+	len = end - start + 1;
+	if (!(ret = (char *)malloc(sizeof(char) * (len + 1))))
+		return (0);
+	i = 0;
+	while (len-- > 0)
+		ret[i++] = *start++;
+	ret[i] = '\0';
+	return (ret);
 }

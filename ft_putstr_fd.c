@@ -6,7 +6,7 @@
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 12:18:05 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/13 15:31:09 by loamar           ###   ########.fr       */
+/*   Updated: 2019/10/24 17:50:48 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	size_t		pos;
-
-	pos = 0;
-	while (s[pos])
+	if (fd > 0)
 	{
-		ft_putchar_fd(s[pos], fd);
-		pos++;
+		while (*s != '\0')
+			ft_putchar_fd(*s++, fd);
 	}
 }

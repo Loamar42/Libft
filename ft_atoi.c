@@ -6,7 +6,7 @@
 /*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 10:01:04 by loamar            #+#    #+#             */
-/*   Updated: 2019/10/14 15:37:46 by loamar           ###   ########.fr       */
+/*   Updated: 2019/10/22 13:05:47 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		ft_atoi(const char *str)
 {
-	long int	i;
-	long int	neg;
-	long int	stock;
+	long	i;
+	long	neg;
+	long	stock;
 
 	i = 0;
 	stock = 0;

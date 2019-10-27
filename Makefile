@@ -6,7 +6,7 @@
 #    By: loamar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 17:16:05 by loamar            #+#    #+#              #
-#    Updated: 2019/10/21 15:29:00 by loamar           ###   ########.fr        #
+#    Updated: 2019/10/27 17:17:49 by loamar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ SRCS = ft_atoi.c \
 		ft_strtrim.c \
 		ft_substr.c \
 		ft_tolower.c \
-		ft_toupper.c
+		ft_toupper.c \
+		ft_putchar.c \
+		ft_putnbr.c \
 
 BONUS = ft_lstadd_front.c \
 		ft_lstadd_back.c \
@@ -66,21 +68,19 @@ OBJ_BON= $(BONUS:.c=.o)
 all: $(NAME)
 
 bonus: $(OBJ) $(OBJ_BON)
-	@ar rc $(NAME) $^
-	@ranlib $(NAME)
-
-bclean:
-	@rm -f $(OBJ_BON)
+	ar rc $(NAME) $^
+	ranlib $(NAME)
 
 $(NAME):
-	@gcc $(CFLAGS) -c $(SRCS)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	gcc $(CFLAGS) -c $(SRCS)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 clean:
-	@rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_BON)
+
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
